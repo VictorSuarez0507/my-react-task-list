@@ -1,0 +1,51 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0 auto;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.card-dog {
+  width: 600px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 5px solid #cbc6c6;
+  border-radius: 20px;
+  margin-bottom: 5px;
+}
+
+img {
+  border-radius: 15px 0px 0px 15px;
+  width: 60%;
+}
+
+button {
+  background-color: #527beb;
+  width: 60px;
+  height: 25px;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
