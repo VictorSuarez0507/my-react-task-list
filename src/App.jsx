@@ -1,7 +1,7 @@
 import './App.css'
 import Header from './components/Header';
 import TaskList from './components/TaskList';
-
+import Task from './components/Task';
 
 function App() {
 
@@ -9,7 +9,8 @@ function App() {
     <div>
       <Header />
       <div className='ListaTareas'>
-        <TaskList />
+      <TaskList />
+      <Task />
       </div>
       
     </div>
