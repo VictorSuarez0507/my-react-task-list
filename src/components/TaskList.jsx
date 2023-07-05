@@ -4,12 +4,10 @@ export default function TaskList ({tareas, setTareas, listaTareas, setListaTarea
         evento.preventDefault();
         setListaTareas([...listaTareas, {id: Date.now(), titulo: tareas, completada: false}])
         setTareas("");
-        console.log("Submit")
     }
 
     function handleChange(evento){
         setTareas(evento.target.value);
-        console.log("Change")
     }
 
 

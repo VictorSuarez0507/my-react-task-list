@@ -51,7 +51,7 @@
   cursor: pointer;
 }
 
-.list-item {
+.listadoTareas {
   display: flex;
   margin: 20px 0;
   border: 1px solid #460cce;
@@ -60,28 +60,28 @@
   max-height: 30px;
 }
 
-.button-complete,
-.button-delete,
-.button-edit {
+.botonCompletar,
+.botonEliminar,
+.botonEditar {
   border: none;
   outline: none;
   cursor: pointer;
   background-color: transparent;
   font-size: 28px;
-  border-radius: 50%;
+  border-radius: 20%;
 }
 
-.button-complete {
+.botonCompletar {
   color: red;
   margin-right: 10px;
 }
 
-.button-edit {
+.botonEditar {
   color: cornflowerblue;
   margin-right: 10px;
 }
 
-.button-delete {
+.botonEliminar {
   color: darkcyan;
 }
 
@@ -92,11 +92,11 @@
   opacity: 0.6;
 }
 
-.list {
-  width: 220px;
-  background-color: darkgrey;
+.listafinal {
+  width: 100%;
+  background-color: aqua;
   border: none;
-  color: blueviolet;
+  color: rgb(5, 4, 5);
   font-size: 20px;
   padding-left: 10px;
   margin-right: 15px;
