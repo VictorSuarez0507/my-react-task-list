@@ -3,36 +3,110 @@
   padding: 0;
 }
 
-body {
-  margin: 0 auto;
-  padding: 0;
+.contenido {
+  background: linear-gradient(to right bottom, #FF6833, #A8FF33);
+  width: 100%;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
-}
-
-.card-dog {
-  width: 600px;
-  display: flex;
   align-items: center;
-  gap: 10px;
-  border: 5px solid #cbc6c6;
-  border-radius: 20px;
-  margin-bottom: 5px;
 }
 
-img {
-  border-radius: 15px 0px 0px 15px;
-  width: 60%;
+.subcontenido {
+  background-color: aqua;
+  min-width: 450px;
+  min-height: 650px;
+  padding: 30px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  box-shadow: 3px 6px 40px black;
+  margin-bottom: 10px;
 }
 
-button {
-  background-color: #527beb;
-  width: 60px;
-  height: 25px;
-  color: white;
+.head h1 {
+  color: rgb(7, 6, 6);
+  text-align: center;
+  margin: 30px 0;
+}
+
+.tareaIngresada {
+  outline: none;
+  width: 260px;
+  padding: 15px;
+  margin-right: 25px;
+  font-size: 20px;
+  color: rgb(246, 249, 249);
+  background-color: black;
+  border: 1px solid wheat;
+  border-radius: 10px;
+}
+
+.buttonAgregar{
+  width: 100px;
+  padding: 15px 15px;
+  font-size: 20px;
+  border-radius: 10px;
+  border: 0;
+  background-color: chocolate;
+  cursor: pointer;
+}
+
+.list-item {
+  display: flex;
+  margin: 20px 0;
+  border: 1px solid #460cce;
+  border-radius: 10px;
+  padding: 10px;
+  max-height: 30px;
+}
+
+.button-complete,
+.button-delete,
+.button-edit {
   border: none;
-  border-radius: 5px;
+  outline: none;
+  cursor: pointer;
+  background-color: transparent;
+  font-size: 28px;
+  border-radius: 50%;
 }
+
+.button-complete {
+  color: red;
+  margin-right: 10px;
+}
+
+.button-edit {
+  color: cornflowerblue;
+  margin-right: 10px;
+}
+
+.button-delete {
+  color: darkcyan;
+}
+
+.complete {
+  text-decoration-style: solid;
+  text-decoration-line: line-through;
+  text-decoration-color: bisque;
+  opacity: 0.6;
+}
+
+.list {
+  width: 220px;
+  background-color: darkgrey;
+  border: none;
+  color: blueviolet;
+  font-size: 20px;
+  padding-left: 10px;
+  margin-right: 15px;
+}
+
+input :focus,
+button :focus{
+  outline: none;
+}
+
 
 
 @keyframes logo-spin {
