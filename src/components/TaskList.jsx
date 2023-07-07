@@ -34,8 +34,9 @@ export default function TaskList ({tareas, setTareas, listaTareas, setListaTarea
 
 
     return(
-        <form onSubmit={handlesubmit}>
-            <input type="text" 
+        <form id="lista" onSubmit={handlesubmit}>
+            <input id="tareas"
+            type="text" 
             placeholder="Añade una tarea" 
             className="tareaIngresada" 
             value={tareas}

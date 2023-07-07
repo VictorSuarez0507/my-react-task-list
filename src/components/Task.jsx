@@ -1,10 +1,10 @@
 export default function Task ({listaTareas, setListaTareas, setEditarTareas}) {
-    //Task: Este componente mostrará el nombre, y un indicador del estado de cada tarea. (ej: checkbox, iconos, tachado...)
     
     function handleComplete (totalTareas){
         setListaTareas(
             listaTareas.map((item) =>{
                 if(item.id === totalTareas.id){
+                    
                     return {...item, completada: !item.completada}
                 }
                 return item;
@@ -27,24 +27,25 @@ export default function Task ({listaTareas, setListaTareas, setEditarTareas}) {
                 <li className="listadoTareas" key={totalTareas.id}>
                     <input type="text"
                         value={totalTareas.titulo}
-                        className="listafinal"
+                        className={`listaFinal ${totalTareas.completada ? "completado" : ""}`}
                         onChange={(event) => event.preventDefault()}
                     />
                     <div>
-                        <button className="botonCompletar task-button"
+                        <button className="botonCompletar"
                             onClick={() => handleComplete(totalTareas)}>
-                                <i className="buttonAgregar">c</i>
+                            <i className="fa-regular fa-circle-check"></i>
                         </button>
-                        <button className="botonEditar task-button" 
-                            onClick={() => handleEdit(totalTareas)}>E
+                        <button className="botonEditar" 
+                            onClick={() => handleEdit(totalTareas)}>
+                            <i className="fa-regular fa-pen-to-square"></i>
                         </button>
-                        <button className="botonEliminar task-button"
-                            onClick={() => handleDelete(totalTareas)}>D
+                        <button className="botonEliminar"
+                            onClick={() => handleDelete(totalTareas)}>
+                            <i className="fa-solid fa-trash-can"></i>
                         </button>
-                    </div>
-                    
+                    </div>   
                 </li>
-            ) )}
+            ) )};
         </div>
     );
 }

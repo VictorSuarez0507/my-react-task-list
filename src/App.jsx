@@ -1,13 +1,19 @@
-import { useState} from "react";
+import { useEffect, useState} from "react";
 import './App.css'
 import Header from './components/Header';
 import TaskList from './components/TaskList';
 import Task from './components/Task';
 
 function App() {
+
+  const estadoIncial = JSON.parse(localStorage.getItem("listaTareas")) || [];
   const [ tareas, setTareas] = useState("");
-  const [listaTareas, setListaTareas] = useState([]);
+  const [listaTareas, setListaTareas] = useState(estadoIncial);
   const [editarTareas, setEditarTareas] = useState(null);
+
+  useEffect( () => {
+    localStorage.setItem("listaTareas", JSON.stringify(listaTareas));
+  },[listaTareas]);
 
   return (
     <div className='contenido'>

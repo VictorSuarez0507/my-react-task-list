@@ -67,8 +67,8 @@
   outline: none;
   cursor: pointer;
   background-color: transparent;
-  font-size: 28px;
-  border-radius: 20%;
+  font-size: 25px;
+  border-radius: 60%;
 }
 
 .botonCompletar {
@@ -82,18 +82,20 @@
 }
 
 .botonEliminar {
-  color: darkcyan;
+  color: rgb(16, 34, 34);
 }
 
-.complete {
+.completado {
   text-decoration-style: solid;
   text-decoration-line: line-through;
   text-decoration-color: bisque;
   opacity: 0.6;
 }
 
-.listafinal {
-  width: 100%;
+.listaFinal {
+  outline: none;
+  pointer-events:none;
+  width: 70%;
   background-color: aqua;
   border: none;
   color: rgb(5, 4, 5);
