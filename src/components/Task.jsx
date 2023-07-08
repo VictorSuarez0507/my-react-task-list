@@ -1,11 +1,11 @@
-export default function Task ({listaTareas, setListaTareas, setEditarTareas}) {
+export default function Task ({taskList, setTaskList, setEditTask}) {
     
-    function handleComplete (totalTareas){
-        setListaTareas(
-            listaTareas.map((item) =>{
-                if(item.id === totalTareas.id){
+    function handleComplete (newTask){
+        setTaskList(
+            taskList.map((item) =>{
+                if(item.id === newTask.id){
                     
-                    return {...item, completada: !item.completada}
+                    return {...item, realize: !item.realize}
                 }
                 return item;
             })
@@ -13,39 +13,39 @@ export default function Task ({listaTareas, setListaTareas, setEditarTareas}) {
     };
 
     function handleEdit ({id}){
-        const buscarTareas = listaTareas.find((totalTareas) => totalTareas.id === id);
-        setEditarTareas(buscarTareas);
+        const findTask = taskList.find((newTask) => newTask.id === id);
+        setEditTask(findTask);
     };
 
     function handleDelete ({id}){
-        setListaTareas(listaTareas.filter((totalTareas) => totalTareas.id !== id));
+        setTaskList(taskList.filter((newTask) => newTask.id !== id));
     };
 
     return(
         <div>
-            {listaTareas.map((totalTareas) =>(
-                <li className="listadoTareas" key={totalTareas.id}>
+            {taskList.map((newTask) =>(
+                <li className="listToDo" key={newTask.id}>
                     <input type="text"
-                        value={totalTareas.titulo}
-                        className={`listaFinal ${totalTareas.completada ? "completado" : ""}`}
+                        value={newTask.title}
+                        className={`finalList ${newTask.realize ? "filled" : ""}`}
                         onChange={(event) => event.preventDefault()}
                     />
                     <div>
-                        <button className="botonCompletar"
-                            onClick={() => handleComplete(totalTareas)}>
+                        <button className="btncomplete"
+                            onClick={() => handleComplete(newTask)}>
                             <i className="fa-regular fa-circle-check"></i>
                         </button>
-                        <button className="botonEditar" 
-                            onClick={() => handleEdit(totalTareas)}>
+                        <button className="btnEdit" 
+                            onClick={() => handleEdit(newTask)}>
                             <i className="fa-regular fa-pen-to-square"></i>
                         </button>
-                        <button className="botonEliminar"
-                            onClick={() => handleDelete(totalTareas)}>
+                        <button className="btnDelete"
+                            onClick={() => handleDelete(newTask)}>
                             <i className="fa-solid fa-trash-can"></i>
                         </button>
                     </div>   
                 </li>
-            ) )};
+            ) )}
         </div>
     );
 }

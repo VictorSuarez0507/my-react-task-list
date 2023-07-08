@@ -3,8 +3,8 @@
   padding: 0;
 }
 
-.contenido {
-  background: linear-gradient(to right bottom, #FF6833, #A8FF33);
+.container {
+  background: #e8e6e6;
   width: 100%;
   min-height: 100vh;
   display: flex;
@@ -12,57 +12,57 @@
   align-items: center;
 }
 
-.subcontenido {
-  background-color: aqua;
+.subContainer {
+  background-color: #CECEF6;
   min-width: 450px;
   min-height: 650px;
   padding: 30px;
   box-sizing: border-box;
   border-radius: 10px;
-  box-shadow: 3px 6px 40px black;
   margin-bottom: 10px;
 }
 
 .head h1 {
-  color: rgb(7, 6, 6);
+  color: #1B0A2A;
   text-align: center;
   margin: 30px 0;
 }
 
-.tareaIngresada {
+.taskEntered {
   outline: none;
   width: 260px;
   padding: 15px;
   margin-right: 25px;
   font-size: 20px;
-  color: rgb(246, 249, 249);
-  background-color: black;
+  color: #000000;
+  background-color: #bf80fa;
   border: 1px solid wheat;
   border-radius: 10px;
 }
 
-.buttonAgregar{
+.buttonAdd{
   width: 100px;
   padding: 15px 15px;
   font-size: 20px;
   border-radius: 10px;
   border: 0;
-  background-color: chocolate;
+  color: #eadfdf;
+  background-color:  #380B61;
   cursor: pointer;
 }
 
-.listadoTareas {
+.listToDo {
   display: flex;
   margin: 20px 0;
-  border: 1px solid #460cce;
+  border: 1px solid #7401DF;
   border-radius: 10px;
   padding: 10px;
   max-height: 30px;
 }
 
-.botonCompletar,
-.botonEliminar,
-.botonEditar {
+.btncomplete,
+.btnDelete,
+.btnEdit {
   border: none;
   outline: none;
   cursor: pointer;
@@ -71,32 +71,32 @@
   border-radius: 60%;
 }
 
-.botonCompletar {
-  color: red;
+.btncomplete {
+  color: #088A08;
   margin-right: 10px;
 }
 
-.botonEditar {
-  color: cornflowerblue;
+.btnEdit {
+  color: #FF0000;
   margin-right: 10px;
 }
 
-.botonEliminar {
-  color: rgb(16, 34, 34);
+.btnDelete {
+  color: #0B2161;
 }
 
-.completado {
+.filled {
   text-decoration-style: solid;
   text-decoration-line: line-through;
-  text-decoration-color: bisque;
+  text-decoration-color: #000000;
   opacity: 0.6;
 }
 
-.listaFinal {
+.finalList {
   outline: none;
   pointer-events:none;
   width: 70%;
-  background-color: aqua;
+  background-color: #CECEF6;
   border: none;
   color: rgb(5, 4, 5);
   font-size: 20px;

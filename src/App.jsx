@@ -6,36 +6,36 @@ import Task from './components/Task';
 
 function App() {
 
-  const estadoIncial = JSON.parse(localStorage.getItem("listaTareas")) || [];
-  const [ tareas, setTareas] = useState("");
-  const [listaTareas, setListaTareas] = useState(estadoIncial);
-  const [editarTareas, setEditarTareas] = useState(null);
+  const estadoIncial = JSON.parse(localStorage.getItem("taskList")) || [];
+  const [ task, setTask] = useState("");
+  const [taskList, setTaskList] = useState(estadoIncial);
+  const [editTask, setEditTask] = useState(null);
 
   useEffect( () => {
-    localStorage.setItem("listaTareas", JSON.stringify(listaTareas));
-  },[listaTareas]);
+    localStorage.setItem("taskList", JSON.stringify(taskList));
+  },[taskList]);
 
   return (
-    <div className='contenido'>
-      <div className='subcontenido'>
+    <div className='container'>
+      <div className='subContainer'>
         <div>
           <Header />
         </div>
         <div>
           <TaskList
-            tareas = {tareas}
-            setTareas = {setTareas}
-            listaTareas = {listaTareas}
-            setListaTareas = {setListaTareas}  
-            editarTareas= {editarTareas}    
-            setEditarTareas= {setEditarTareas}   
+            task = {task}
+            setTask = {setTask}
+            taskList = {taskList}
+            setTaskList = {setTaskList}  
+            editTask= {editTask}    
+            setEditTask= {setEditTask}   
           />
         </div>
         <div>
           <Task 
-            listaTareas = {listaTareas}
-            setListaTareas = {setListaTareas}
-            setEditarTareas = {setEditarTareas}
+            taskList = {taskList}
+            setTaskList = {setTaskList}
+            setEditTask = {setEditTask}
           />
         </div>
       </div>

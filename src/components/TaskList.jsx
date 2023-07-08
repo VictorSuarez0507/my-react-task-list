@@ -1,49 +1,48 @@
 import React, {useEffect} from "react";
-export default function TaskList ({tareas, setTareas, listaTareas, setListaTareas, editarTareas, setEditarTareas}) {
-    //TaskList: En este componente debe visualizarse la lista completa de tareas.
+export default function TaskList ({task, setTask, taskList, setTaskList, editTask, setEditTask}) {
     
-    function updateTareas ( titulo, id, completada){
-        const newTareas = listaTareas.map((totalTareas) => 
-            totalTareas.id === id ? {titulo, id, completada} : totalTareas
+    function updateTask ( title, id, realize){
+        const newToDo = taskList.map((newTask) => 
+            newTask.id === id ? {title, id, realize} : newTask
         );
-        setListaTareas(newTareas);
-        setEditarTareas("");
+        setTaskList(newToDo);
+        setEditTask("");
     }
 
     useEffect(() => {
-        if (editarTareas) {
-            setTareas(editarTareas.titulo);
+        if (editTask) {
+            setTask(editTask.title);
         } else{
-            setTareas("");
+            setTask("");
         }
-    }, [setTareas, editarTareas]);
+    }, [setTask, editTask]);
     
-    function handlesubmit(event){
+    function handleSubmit(event){
         event.preventDefault();
-        if(!editarTareas){
-            setListaTareas([...listaTareas, {id: Date.now(), titulo: tareas, completada: false}]);
-            setTareas("");  
+        if(!editTask){
+            setTaskList([...taskList, {id: Date.now(), title: task, realize: false}]);
+            setTask("");  
         } else {
-            updateTareas(tareas, editarTareas.id, editarTareas.completada)
+            updateTask(task, editTask.id, editTask.realize)
         } 
     }
 
     function handleChange(event){
-        setTareas(event.target.value);
+        setTask(event.target.value);
     }
 
 
     return(
-        <form id="lista" onSubmit={handlesubmit}>
-            <input id="tareas"
+        <form id="lista" onSubmit={handleSubmit}>
+            <input id="actividad"
             type="text" 
             placeholder="Añade una tarea" 
-            className="tareaIngresada" 
-            value={tareas}
+            className="taskEntered" 
+            value={task}
             required
             onChange={handleChange}
             />
-            <button type="submit" className="buttonAgregar">Agregar</button>        
+            <button type="submit" className="buttonAdd">Agregar</button>        
         </form>
     ); 
 }
