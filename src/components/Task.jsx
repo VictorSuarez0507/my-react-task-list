@@ -1,6 +1,21 @@
-export default function Task ({taskList, setTaskList, setEditTask}) {
+import useCustom from "../hooks/useCustom";
+
+export default function Task () {
+
+    const {task, 
+        setTask,
+        taskList, 
+        setTaskList,
+        editTask,
+        setEditTask,
+        newComplete,
+        newEdit, 
+        newHandleSubmit, 
+        newHandleChange,
+        newUpdateTask,
+        newDelete} = useCustom();
     
-    function handleComplete (newTask){
+    /*function handleComplete (newTask){
         setTaskList(
             taskList.map((item) =>{
                 if(item.id === newTask.id){
@@ -10,16 +25,16 @@ export default function Task ({taskList, setTaskList, setEditTask}) {
                 return item;
             })
         )
-    };
+    };*/
 
-    function handleEdit ({id}){
+    /*function handleEdit ({id}){
         const findTask = taskList.find((newTask) => newTask.id === id);
         setEditTask(findTask);
-    };
+    };*/
 
-    function handleDelete ({id}){
+    /*function handleDelete ({id}){
         setTaskList(taskList.filter((newTask) => newTask.id !== id));
-    };
+    };*/
 
     return(
         <div>
@@ -32,15 +47,15 @@ export default function Task ({taskList, setTaskList, setEditTask}) {
                     />
                     <div>
                         <button className="btncomplete"
-                            onClick={() => handleComplete(newTask)}>
+                            onClick={() => {newComplete(newTask)}}>
                             <i className="fa-regular fa-circle-check"></i>
                         </button>
                         <button className="btnEdit" 
-                            onClick={() => handleEdit(newTask)}>
+                            onClick={() => {newEdit(newTask)}}>
                             <i className="fa-regular fa-pen-to-square"></i>
                         </button>
                         <button className="btnDelete"
-                            onClick={() => handleDelete(newTask)}>
+                            onClick={() => {newDelete(newTask)}}>
                             <i className="fa-solid fa-trash-can"></i>
                         </button>
                     </div>   

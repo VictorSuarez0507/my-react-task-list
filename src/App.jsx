@@ -3,17 +3,28 @@ import './App.css'
 import Header from './components/Header';
 import TaskList from './components/TaskList';
 import Task from './components/Task';
+import useCustom from "./hooks/useCustom";
 
 function App() {
 
-  const estadoIncial = JSON.parse(localStorage.getItem("taskList")) || [];
-  const [ task, setTask] = useState("");
-  const [taskList, setTaskList] = useState(estadoIncial);
-  const [editTask, setEditTask] = useState(null);
 
-  useEffect( () => {
-    localStorage.setItem("taskList", JSON.stringify(taskList));
-  },[taskList]);
+  const {task, 
+    setTask,
+    taskList, 
+    setTaskList,
+    editTask,
+    setEditTask,
+    newComplete,
+    newEdit, 
+    newHandleSubmit, 
+    newHandleChange,
+    newUpdateTask,
+    newDelete} = useCustom();
+
+ 
+  
+
+  
 
   return (
     <div className='container'>
@@ -22,21 +33,10 @@ function App() {
           <Header />
         </div>
         <div>
-          <TaskList
-            task = {task}
-            setTask = {setTask}
-            taskList = {taskList}
-            setTaskList = {setTaskList}  
-            editTask= {editTask}    
-            setEditTask= {setEditTask}   
-          />
+          <TaskList />
         </div>
         <div>
-          <Task 
-            taskList = {taskList}
-            setTaskList = {setTaskList}
-            setEditTask = {setEditTask}
-          />
+          <Task />
         </div>
       </div>
     </div>
