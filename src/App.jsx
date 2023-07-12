@@ -5,26 +5,8 @@ import TaskList from './components/TaskList';
 import Task from './components/Task';
 import useCustom from "./hooks/useCustom";
 
+
 function App() {
-
-
-  const {task, 
-    setTask,
-    taskList, 
-    setTaskList,
-    editTask,
-    setEditTask,
-    newComplete,
-    newEdit, 
-    newHandleSubmit, 
-    newHandleChange,
-    newUpdateTask,
-    newDelete} = useCustom();
-
- 
-  
-
-  
 
   return (
     <div className='container'>
@@ -43,4 +25,4 @@ function App() {
   );
 
 }
-export default App
+export default App;
