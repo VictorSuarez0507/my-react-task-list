@@ -8,8 +8,13 @@ function App() {
 
   const estadoIncial = JSON.parse(localStorage.getItem("taskList")) || [];
   const [ task, setTask] = useState("");
+  const [ description, setDescription] = useState("");
   const [taskList, setTaskList] = useState(estadoIncial);
   const [editTask, setEditTask] = useState(null);
+  const [errors, setErrors] = useState({
+    task: undefined,
+    description: undefined,
+  })
 
   useEffect( () => {
     localStorage.setItem("taskList", JSON.stringify(taskList));
@@ -28,7 +33,11 @@ function App() {
             taskList = {taskList}
             setTaskList = {setTaskList}  
             editTask= {editTask}    
-            setEditTask= {setEditTask}   
+            setEditTask= {setEditTask} 
+            description={description}
+            setDescription={setDescription}  
+            errors={errors}
+            setErrors={setErrors}
           />
         </div>
         <div>

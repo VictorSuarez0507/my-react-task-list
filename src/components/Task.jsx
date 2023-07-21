@@ -25,11 +25,30 @@ export default function Task ({taskList, setTaskList, setEditTask}) {
         <div>
             {taskList.map((newTask) =>(
                 <li className="listToDo" key={newTask.id}>
-                    <input type="text"
-                        value={newTask.title}
-                        className={`finalList ${newTask.realize ? "filled" : ""}`}
-                        onChange={(event) => event.preventDefault()}
-                    />
+                    <table>
+                        <tbody>
+                            <tr>
+                                <th>
+                                <input type="text"
+                                    value={newTask.title}
+                                    className={`finalList ${newTask.realize ? "filled" : ""}`}
+                                    onChange={(event) => event.preventDefault()}
+                                />
+                                </th>
+                            </tr>
+                            <tr>
+                                <td>
+                                <textarea type="text"
+                                    value={newTask.body}
+                                    className={`finalBody ${newTask.realize ? "filled" : ""}`}
+                                    onChange={(event) => event.preventDefault()}
+                                />
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    
                     <div>
                         <button className="btncomplete"
                             onClick={() => handleComplete(newTask)}>
@@ -44,7 +63,10 @@ export default function Task ({taskList, setTaskList, setEditTask}) {
                             <i className="fa-solid fa-trash-can"></i>
                         </button>
                     </div>   
+                    
                 </li>
+
+
             ) )}
         </div>
     );
