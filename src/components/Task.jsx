@@ -1,24 +1,12 @@
-export default function Task ({taskList, setTaskList, setEditTask}) {
-    
-    function handleComplete (newTask){
-        setTaskList(
-            taskList.map((item) =>{
-                if(item.id === newTask.id){
-                    
-                    return {...item, realize: !item.realize}
-                }
-                return item;
-            })
-        )
-    };
+//export default function Task ({taskList, setTaskList, setEditTask}) {
+import useCustom from "../hooks/useCustom";
+export default function Task ({ setEditTask }) {
+
+    const {  taskList, newComplete, newDelete} = useCustom();  
 
     function handleEdit ({id}){
         const findTask = taskList.find((newTask) => newTask.id === id);
         setEditTask(findTask);
-    };
-
-    function handleDelete ({id}){
-        setTaskList(taskList.filter((newTask) => newTask.id !== id));
     };
 
     return(
@@ -51,7 +39,7 @@ export default function Task ({taskList, setTaskList, setEditTask}) {
                     
                     <div>
                         <button className="btncomplete"
-                            onClick={() => handleComplete(newTask)}>
+                            onClick={() => newComplete(newTask)}>
                             <i className="fa-regular fa-circle-check"></i>
                         </button>
                         <button className="btnEdit" 
@@ -59,7 +47,7 @@ export default function Task ({taskList, setTaskList, setEditTask}) {
                             <i className="fa-regular fa-pen-to-square"></i>
                         </button>
                         <button className="btnDelete"
-                            onClick={() => handleDelete(newTask)}>
+                            onClick={() => newDelete(newTask)}>
                             <i className="fa-solid fa-trash-can"></i>
                         </button>
                     </div>   

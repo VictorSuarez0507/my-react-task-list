@@ -30,6 +30,7 @@ export default function TaskList ({task, setTask, taskList,
         } else {
             updateTask(task, description, editTask.id, editTask.realize)
         } 
+        window.location.reload();
     }
 
     function handleChange(event){

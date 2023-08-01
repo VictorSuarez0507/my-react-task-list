@@ -1,24 +1,21 @@
-import { useEffect, useState} from "react";
+import { useState} from "react";
 import './App.css'
 import Header from './components/Header';
 import TaskList from './components/TaskList';
 import Task from './components/Task';
+import useCustom from "./hooks/useCustom";
 
 function App() {
-
-  const estadoIncial = JSON.parse(localStorage.getItem("taskList")) || [];
+  const { taskList, setTaskList} = useCustom();
   const [ task, setTask] = useState("");
   const [ description, setDescription] = useState("");
-  const [taskList, setTaskList] = useState(estadoIncial);
   const [editTask, setEditTask] = useState(null);
   const [errors, setErrors] = useState({
     task: undefined,
     description: undefined,
   })
 
-  useEffect( () => {
-    localStorage.setItem("taskList", JSON.stringify(taskList));
-  },[taskList]);
+
 
   return (
     <div className='container'>
