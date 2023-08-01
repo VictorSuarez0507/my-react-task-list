@@ -1,4 +1,3 @@
-//export default function Task ({taskList, setTaskList, setEditTask}) {
 import useCustom from "../hooks/useCustom";
 export default function Task ({ setEditTask }) {
 
@@ -35,8 +34,7 @@ export default function Task ({ setEditTask }) {
                             </tr>
                         </tbody>
                     </table>
-                    
-                    
+                                      
                     <div>
                         <button className="btncomplete"
                             onClick={() => newComplete(newTask)}>
@@ -50,11 +48,8 @@ export default function Task ({ setEditTask }) {
                             onClick={() => newDelete(newTask)}>
                             <i className="fa-solid fa-trash-can"></i>
                         </button>
-                    </div>   
-                    
+                    </div>        
                 </li>
-
-
             ) )}
         </div>
     );

@@ -15,8 +15,6 @@ function App() {
     description: undefined,
   })
 
-
-
   return (
     <div className='container'>
       <div className='subContainer'>

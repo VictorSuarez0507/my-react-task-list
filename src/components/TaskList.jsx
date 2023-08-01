@@ -53,7 +53,6 @@ export default function TaskList ({task, setTask, taskList,
         setDescription(event.target.value);
     }
 
-
     return(
         <form id="lista" onSubmit={handleSubmit}>
             <div>
@@ -76,8 +75,7 @@ export default function TaskList ({task, setTask, taskList,
                 className="bodyTask"
                 value={description}
                 onChange={handleDescription}/>
-            </div>
-                  
+            </div>                 
         </form>
     ); 
 }

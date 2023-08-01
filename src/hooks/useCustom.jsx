@@ -1,20 +1,13 @@
 import { useState, useEffect } from "react";
 
-
 export default function useCustom () {
-
     const estadoInicial = JSON.parse(localStorage.getItem("taskList")) || [];
     const [taskList, setTaskList] = useState(estadoInicial);
 
     useEffect( () => {
         localStorage.setItem("taskList", JSON.stringify(taskList));
      },[taskList]);
-
-    console.log(setTaskList);
-
   
-     
-
     const newComplete = (newTask) => {
         setTaskList(
             taskList.map((item) =>{
@@ -33,6 +26,5 @@ export default function useCustom () {
         window.location.reload();      
     };
 
-    
     return { taskList, setTaskList, newComplete, newDelete};
 }
