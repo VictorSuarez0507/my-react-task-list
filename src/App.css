@@ -63,6 +63,10 @@
   cursor: pointer;
 }
 
+button:disabled {
+  background-color: #ba9ef0;
+}
+
 .listToDo {
   list-style-type: none;
   margin: 10px;
@@ -70,6 +74,10 @@
   border-radius: 10px;
   padding: 10px;
   max-height: 200px; 
+}
+.listToDo .final{
+  outline: none;
+  background-color: #CECEF6;
 }
 
 .btncomplete,

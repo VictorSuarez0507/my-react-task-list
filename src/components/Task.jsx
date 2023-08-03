@@ -1,73 +1,80 @@
-export default function Task ({taskList, setTaskList, setEditTask}) {
+import React, { useState } from "react";
+
+const Task = ({ handleNewTask }) => {
     
-    function handleComplete (newTask){
-        setTaskList(
-            taskList.map((item) =>{
-                if(item.id === newTask.id){
-                    
-                    return {...item, realize: !item.realize}
-                }
-                return item;
-            })
-        )
+    const [tasks, setTasks] = useState("");
+    const [description, setDescription] = useState("");
+    const [error, setError] = useState({
+        tasks: undefined,
+        description: undefined,
+    });
+
+    const handleSubmit = (e) => {
+    e.preventDefault();
+    handleNewTask({ tasks, description });
+    setTasks("");
+    setDescription("");
     };
 
-    function handleEdit ({id}){
-        const findTask = taskList.find((newTask) => newTask.id === id);
-        setEditTask(findTask);
-    };
+    const handleChange = (e) => {
+    const value = e.target.value
+    if(value.length <= 3){
+        setError({
+            ...error,
+            tasks: "La tarea debe tener mas de 3 caracteres"          
+        })
+        }else {
+            setError({
+            ...error,
+            tasks: "",
+            description: ""
+        })
+    }
+    setTasks(value);
+    }
 
-    function handleDelete ({id}){
-        setTaskList(taskList.filter((newTask) => newTask.id !== id));
-    };
+    const handleDescription = (e) => {
+        setDescription(e.target.value);
+    }
 
-    return(
+    const formValid = Object.keys(error).every(
+        (key) => error[key] === "")
+
+    return (
         <div>
-            {taskList.map((newTask) =>(
-                <li className="listToDo" key={newTask.id}>
-                    <table>
-                        <tbody>
-                            <tr>
-                                <th>
-                                <input type="text"
-                                    value={newTask.title}
-                                    className={`finalList ${newTask.realize ? "filled" : ""}`}
-                                    onChange={(event) => event.preventDefault()}
-                                />
-                                </th>
-                            </tr>
-                            <tr>
-                                <td>
-                                <textarea type="text"
-                                    value={newTask.body}
-                                    className={`finalBody ${newTask.realize ? "filled" : ""}`}
-                                    onChange={(event) => event.preventDefault()}
-                                />
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    
-                    
-                    <div>
-                        <button className="btncomplete"
-                            onClick={() => handleComplete(newTask)}>
-                            <i className="fa-regular fa-circle-check"></i>
-                        </button>
-                        <button className="btnEdit" 
-                            onClick={() => handleEdit(newTask)}>
-                            <i className="fa-regular fa-pen-to-square"></i>
-                        </button>
-                        <button className="btnDelete"
-                            onClick={() => handleDelete(newTask)}>
-                            <i className="fa-solid fa-trash-can"></i>
-                        </button>
-                    </div>   
-                    
-                </li>
-
-
-            ) )}
+            <form onSubmit={handleSubmit}>
+                <div>
+                    <label htmlFor="task"></label>
+                    <input
+                        type="text"
+                        id="tasks"
+                        value={tasks}
+                        placeholder="Añade una tarea" 
+                        className="taskEntered" 
+                        onChange={handleChange}
+                        required
+                    />
+                    <button type="submit" className="buttonAdd"
+                        disabled={!formValid}>
+                        Agregar
+                    </button>  
+                        <br/>
+                    <span role="alert">{error.tasks}</span>
+                </div>
+                <div>
+                    <label htmlFor="description"></label>
+                    <textarea rows="4" cols="10"
+                        type="text"
+                        id="description"
+                        value={description}
+                        placeholder= "Descripcion de la tarea"
+                        className="bodyTask"
+                        onChange={handleDescription}
+                    />
+                </div>
+            </form>
         </div>
     );
-}
+};
+
+export default Task;
