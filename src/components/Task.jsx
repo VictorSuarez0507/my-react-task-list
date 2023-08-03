@@ -1,30 +1,43 @@
-import useCustom from "../hooks/useCustom";
-
-export default function Task () {
-    const {  taskList, newComplete, newDelete} = useCustom();
+import React, { useState } from "react";
 
 
-    return(
+const Task = ({ handleNewTask }) => {
+    
+    const [tasks, setTasks] = useState("");
+    
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        handleNewTask({ tasks });
+        setTasks("");
+    };
+
+    const handleChange = (e) => {
+        const value = e.target.value
+        setTasks(value);
+    }
+
+    return (
         <div>
-            {taskList.map((newTask) =>(
-                <li className="listToDo" key={newTask.id}>
-                    <input type="text"
-                        value={newTask.title}
-                        className={`finalList ${newTask.realize ? "filled" : ""}`}
-                        onChange={(event) => event.preventDefault()}
+            <form onSubmit={handleSubmit}>
+                <div>
+                    <label htmlFor="task"></label>
+                    <input
+                        type="text"
+                        id="tasks"
+                        value={tasks}
+                        placeholder="Añade una tarea" 
+                        className="taskEntered" 
+                        onChange={handleChange}
+                        required
                     />
-                    <div>
-                        <button className="btncomplete"
-                            onClick={() => {newComplete(newTask)}}>
-                            <i className="fa-regular fa-circle-check"></i>
-                        </button>
-                        <button className="btnDelete"
-                            onClick={() => {newDelete(newTask)}}>
-                            <i className="fa-solid fa-trash-can"></i>
-                        </button>
-                    </div>   
-                </li>
-            ) )}
+                    <button type="submit" className="buttonAdd">
+                        Agregar
+                    </button>      
+                </div>
+                
+            </form>
         </div>
     );
-}
+};
+
+export default Task;

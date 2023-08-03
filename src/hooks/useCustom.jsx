@@ -1,49 +1,34 @@
 import { useState, useEffect } from "react";
 
-export function useCustom () {
+const useCustom = () => {
+  const estadoInicial = JSON.parse(localStorage.getItem("listTask")) || [];
+  const [listTask, setListTask] = useState(estadoInicial);
 
-    const estadoInicial = JSON.parse(localStorage.getItem("taskList")) || [];
-    const [taskList, setTaskList] = useState(estadoInicial);
-    const [ task, setTask] = useState("");
-    
+  useEffect( () => {
+    localStorage.setItem("listTask", JSON.stringify(listTask));
+  },[listTask]);
 
-    useEffect( () => {
-        localStorage.setItem("taskList", JSON.stringify(taskList));
-  },[taskList]);
+  const createTask = (dataTask) => {
+    setListTask([...listTask, { ...dataTask, id: Date.now(), completed: false }]);
+  };
 
-  
-    const newHandleSubmit = (event) => {
-        event.preventDefault();
-        setTaskList([...taskList, {id: Date.now(), title: task, realize: false}]);
-        setTask(""); 
-        window.location.reload();
-    }
-    
-    const handleChange = (event) =>{
-        setTask(event.target.value);
-    }
-     
+  const updateTask = (taskId, updatedTask) => {
+    setListTask(listTask.map((task) =>
+    task.id === taskId ? { ...task, ...updatedTask } : task
+  ));
+  };
 
-    const newComplete = (newTask) => {
-        setTaskList(
-            taskList.map((item) =>{
-                if(item.id === newTask.id){
-                    
-                    return {...item, realize: !item.realize}
-                }
-                return item;
-            }),
-            window.location.reload()
-        )
-    };
+  const deleteTask = (taskId) => {
+    setListTask(listTask.filter((task) => task.id !== taskId));
+  };
 
-    const newDelete = ({ id }) => {
-        setTaskList(taskList.filter((newTask) => newTask.id !== id));
-        window.location.reload();      
-    };
-
-    
-    return { task, taskList, newHandleSubmit,handleChange, newComplete, newDelete};
-}
+  return {
+    listTask,
+    setListTask,
+    createTask,
+    updateTask,
+    deleteTask,
+  };
+};
 
 export default useCustom;
