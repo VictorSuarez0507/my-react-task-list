@@ -1,75 +1,81 @@
 import React, { useState } from "react";
 
 
-const Task = ({ handleAddTask }) => {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [error, setError] = useState({
-    task: undefined,
-    description: undefined,
-  });
-
-  
-
-  const handleSubmit = (e) => {
+const Task = ({ handleNewTask }) => {
     
+    const [tasks, setTasks] = useState("");
+    const [description, setDescription] = useState("");
+    const [error, setError] = useState({
+        tasks: undefined,
+        description: undefined,
+    });
+
+    const handleSubmit = (e) => {
     e.preventDefault();
-    handleAddTask({ title, description });
-    setTitle("");
+    handleNewTask({ tasks, description });
+    setTasks("");
     setDescription("");
-  };
-  function handleChange(event){
-    const value = event.target.value
+    };
+
+    const handleChange = (e) => {
+    const value = e.target.value
     if(value.length <= 3){
         setError({
             ...error,
-            task: "La tarea debe tener mas de 3 caracteres"
-          })
+            tasks: "La tarea debe tener mas de 3 caracteres"          
+        })
         }else {
-          setError({
+            setError({
             ...error,
-            task: ""
-          })
+            tasks: "",
+            description: ""
+        })
     }
-    setTitle(value);
-}
+    setTasks(value);
+    }
 
-function handleDescription(event) {
-    setDescription(event.target.value);
-}
+    const handleDescription = (e) => {
+        setDescription(e.target.value);
+    }
 
-  return (
-    <div>
-      <form onSubmit={handleSubmit}>
+    const formValid = Object.keys(error).every(
+        (key) => error[key] === "")
+
+    return (
         <div>
-          <label htmlFor="task"></label>
-          <input
-            type="text"
-            id="title"
-            value={title}
-            placeholder="Añade una tarea" 
-            className="taskEntered" 
-            onChange={handleChange}
-            required
-          />
-          <button type="submit" className="buttonAdd">Agregar</button>  
-                <br/>
-                <span role="alert">{error.task}</span>
+            <form onSubmit={handleSubmit}>
+                <div>
+                    <label htmlFor="task"></label>
+                    <input
+                        type="text"
+                        id="tasks"
+                        value={tasks}
+                        placeholder="Añade una tarea" 
+                        className="taskEntered" 
+                        onChange={handleChange}
+                        required
+                    />
+                    <button type="submit" className="buttonAdd"
+                        disabled={!formValid}>
+                        Agregar
+                    </button>  
+                        <br/>
+                    <span role="alert">{error.tasks}</span>
+                </div>
+                <div>
+                    <label htmlFor="description"></label>
+                    <textarea rows="4" cols="10"
+                        type="text"
+                        id="description"
+                        value={description}
+                        placeholder= "Descripcion de la tarea"
+                        className="bodyTask"
+                        onChange={handleDescription}
+                    />
+                </div>
+            </form>
         </div>
-        <div>
-          <label htmlFor="description"></label>
-          <textarea rows="4" cols="10"
-            type="text"
-            id="description"
-            value={description}
-            placeholder= "Descripcion de la tarea"
-            className="bodyTask"
-            onChange={handleDescription}
-          />
-        </div>
-      </form>
-    </div>
-  );
+    );
 };
 
 export default Task;

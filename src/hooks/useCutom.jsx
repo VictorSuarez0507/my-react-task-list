@@ -1,41 +1,33 @@
 import { useState, useEffect } from "react";
 
 const useCustom = () => {
-  const [tasks, setTasks] = useState([]);
+  const estadoInicial = JSON.parse(localStorage.getItem("listTask")) || [];
+  const [listTask, setListTask] = useState(estadoInicial);
 
-  useEffect(() => {
-    const storedTasks = localStorage.getItem("tasks");
-    if (storedTasks) {
-      setTasks(JSON.parse(storedTasks));
-    }
-  }, []);
+  useEffect( () => {
+    localStorage.setItem("listTask", JSON.stringify(listTask));
+  },[listTask]);
 
-  const createTask = (newTask) => {
-    const updatedTasks = [...tasks, { ...newTask, id: Date.now(), completed: false }];
-    setTasks(updatedTasks);
-    localStorage.setItem("tasks", JSON.stringify(updatedTasks));
-  };
-
-  const deleteTask = (taskId) => {
-    const updatedTasks = tasks.filter((task) => task.id !== taskId);
-    setTasks(updatedTasks);
-    localStorage.setItem("tasks", JSON.stringify(updatedTasks));
+  const createTask = (dataTask) => {
+    setListTask([...listTask, { ...dataTask, id: Date.now(), completed: false }]);
   };
 
   const updateTask = (taskId, updatedTask) => {
-    const updatedTasks = tasks.map((task) =>
-      task.id === taskId ? { ...task, ...updatedTask } : task
-    );
-    setTasks(updatedTasks);
-    localStorage.setItem("tasks", JSON.stringify(updatedTasks));
+    setListTask(listTask.map((task) =>
+    task.id === taskId ? { ...task, ...updatedTask } : task
+  ));
+  };
+
+  const deleteTask = (taskId) => {
+    setListTask(listTask.filter((task) => task.id !== taskId));
   };
 
   return {
-    tasks,
+    listTask,
+    setListTask,
     createTask,
-    deleteTask,
     updateTask,
-    setTasks,
+    deleteTask,
   };
 };
 

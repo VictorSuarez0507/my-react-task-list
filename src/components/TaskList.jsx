@@ -1,101 +1,103 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Header from "./Header";
 import Task from "./Task";
 import useCustom from "../hooks/useCutom";
 
 const TaskList = () => {
    
-  const { tasks, createTask, deleteTask, updateTask, setTasks } = useCustom();
-
-  const [editmode, setEditmode] = useState(false);
-  const [editId, setEditID] = useState("");
-  //const [editingDescription, setEditingDescription] = useState("");
-
+  const { listTask, createTask, deleteTask, updateTask, setListTask } = useCustom();
   
+  const [editId, setEditId] = useState("");
+  const [editTask, setEditTask] = useState("");
+  const [editDescription, setEditDescription] = useState("");
 
-  const handleAddTask = (newTask) => {
-    createTask(newTask);
+
+  const handleNewTask = (dataTask) => {
+    createTask(dataTask);
   };
-  const handleToggleComplete = (taskId) => {
-    const updatedTasks = tasks.map((task) =>
-      task.id === taskId ? { ...task, completed: !task.completed } : task
-    );
-    setTasks(updatedTasks);
-    localStorage.setItem("tasks", JSON.stringify(updatedTasks));
+
+  const handleComplete = (taskId) => {
+    setListTask(listTask.map((task) =>
+    task.id === taskId ? { ...task, completed: !task.completed } : task
+  ));
   };
 
   const handleDeleteTask = (taskId) => {
     deleteTask(taskId);
   };
 
-  ////////////////////
-  const handleEdit = (theTask) => {
-    setTasks(theTask.title);
-    setEditmode(true);
-    setEditID(id);
-};
-
-
-
-
-  /*
-  function handleEdit ({id}){
-    const findTask = tasks.find((newTask) => newTask.id === id);
-    setEditingTaskId(findTask);
-};
-console.log(setEditingTaskId)
-
-
-
-  const handleStartEditing = (task) => {
-    if (editingTaskId === task.id){
-        updateTask(editingTaskId, { title: editingTitle, description: editingDescription });
-    }
-    setEditingTaskId(task.id);
-    setEditingTitle(task.title);
-    setEditingDescription(task.description);
+  const handleEdit = (task) => {
+    setEditId(task.id);
+    setEditTask(task.tasks);
+    setEditDescription(task.description);
   };
-  */
 
-  
+  const handleCancel = () => {
+    setEditId("");
+    setEditTask("");
+    setEditDescription("");
+  };
 
- 
+  const handleSave = () => {
+    updateTask(editId, { tasks: editTask, description: editDescription });
+    handleCancel();
+  };
+
 
   return (
     <div>
       <Header />
-      <Task handleAddTask={handleAddTask} />
+      <Task handleNewTask={handleNewTask} />
         <div>
-          {tasks.map((task) => (
+          {listTask.map((task) => (
             <li className="listToDo" key={task.id}>
                 <table >
                     <tbody >
                         <tr >
                             <th>
-                                <input
-                                    type="text"
-                                    value={task.title}  
-                                    className={`finalList ${task.completed ? "filled" : ""}`}
-                                    onChange={(e) => e.preventDefault()}
-                                />
+                                {editId === task.id ? (
+                                    <input
+                                        type="text"
+                                        value={editTask}
+                                        className="listToDo final"
+                                        onChange={(e) => setEditTask(e.target.value)}
+                                    />
+                                    ) : (                                   
+                                    <span className={`finalList ${task.completed ? "filled" : ""}`}>{task.tasks}</span>
+                                    )}                          
                             </th>
                         </tr>
                         <tr>
                             <td>
-                                <textarea
-                                    type="text"
-                                    value={task.description}
-                                    className={`finalList ${task.completed ? "filled" : ""}`}
-                                    onChange={(e) => e.preventDefault()}     
-                                />
+                                {editId === task.id ? (
+                                    <textarea
+                                        type="text"
+                                        value={editDescription}
+                                        className="listToDo final" 
+                                        onChange={(e) => setEditDescription(e.target.value)}
+                                        />
+                                    ) : (
+                                        <span className={`finalList ${task.completed ? "filled" : ""}`}>{task.description}</span>
+                                    )}                                
                             </td>
                         </tr>
                     </tbody>
-                </table>
+                </table>               
 
-                <div>
-                    <button className="btncomplete "
-                        onClick={() => handleToggleComplete(task.id)}>
+                <div>     
+                    {editId === task.id ? (
+                  <>
+                    <button className="btncomplete" onClick={handleSave}>
+                    <i className="fa-solid fa-check"></i>
+                    </button>
+                    <button className="btnEdit"  onClick={handleCancel}>
+                    <i className="fa-solid fa-xmark"></i>
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    <button className="btncomplete"
+                        onClick={() => handleComplete(task.id)}>
                         <i className="fa-regular fa-circle-check"></i>
                     </button>
                     <button className="btnEdit" 
@@ -105,7 +107,9 @@ console.log(setEditingTaskId)
                     <button className="btnDelete"
                         onClick={() => handleDeleteTask(task.id)}>
                         <i className="fa-solid fa-trash-can"></i>
-                    </button>                 
+                    </button> 
+                  </>
+                )}                          
                 </div>                 
             </li>
           ))}       
