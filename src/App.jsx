@@ -1,16 +1,26 @@
 import './App.css'
-import TaskList from './components/TaskList';
+import React from "react";
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Menu from './components/Menu';
+import Home from "./pages/Home";
+import AboutUs  from "./pages/AboutUs";
+import Tasks from "./pages/Tasks";
 
 function App() {
   return (
-    <div className='container'>
-      <div className='subContainer'> 
-        <div>
-          <TaskList />
-        </div>
-      </div>
-    </div>
+    
+    <BrowserRouter>
+    <Menu />
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/tasks" element={<Tasks />} />
+      <Route path="/about" element={<AboutUs />} />
+    </Routes>
+  </BrowserRouter>
   );
 }
 export default App
+
+
+
 
