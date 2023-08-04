@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import { VStack, Flex, Input, Button, Textarea, Text } from "@chakra-ui/react";
 
 const Task = ({ handleNewTask }) => {
     
@@ -42,39 +42,47 @@ const Task = ({ handleNewTask }) => {
         (key) => error[key] === "")
 
     return (
-        <div>
+        <VStack>
             <form onSubmit={handleSubmit}>
-                <div>
-                    <label htmlFor="task"></label>
-                    <input
+                <Flex>
+                    <Input
                         type="text"
                         id="tasks"
                         value={tasks}
                         placeholder="Añade una tarea" 
-                        className="taskEntered" 
+                        bg="purple.400"
+                        border="1px solid wheat"
+                        size="lg"
                         onChange={handleChange}
                         required
                     />
-                    <button type="submit" className="buttonAdd"
-                        disabled={!formValid}>
+                    <Button 
+                        type="submit" 
+                        bg="purple.700" 
+                        colorScheme="purple" 
+                        size="lg" 
+                        variant='solid'
+                        isDisabled={!formValid}>
                         Agregar
-                    </button>  
-                        <br/>
-                    <span role="alert">{error.tasks}</span>
-                </div>
-                <div>
-                    <label htmlFor="description"></label>
-                    <textarea rows="4" cols="10"
+                    </Button>     
+                </Flex>
+                <Text role="alert">{error.tasks}</Text>
+                <Flex>
+                    <Textarea rows="4" cols="10"
                         type="text"
                         id="description"
                         value={description}
                         placeholder= "Descripcion de la tarea"
+                        bg="purple.200"
+                        border="1px solid wheat"
+                        size="lg" 
+                        mb="50px"
                         className="bodyTask"
                         onChange={handleDescription}
                     />
-                </div>
+                </Flex>
             </form>
-        </div>
+        </VStack>
     );
 };
 

@@ -7,16 +7,15 @@ import AboutUs  from "./pages/AboutUs";
 import Tasks from "./pages/Tasks";
 
 function App() {
-  return (
-    
+  return (   
     <BrowserRouter>
-    <Menu />
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/tasks" element={<Tasks />} />
-      <Route path="/about" element={<AboutUs />} />
-    </Routes>
-  </BrowserRouter>
+      <Menu />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/tasks" element={<Tasks />} />
+        <Route path="/about" element={<AboutUs />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 export default App
