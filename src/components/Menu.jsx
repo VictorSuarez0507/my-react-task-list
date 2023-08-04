@@ -1,7 +1,7 @@
 import { Box, Center, Button, Flex } from "@chakra-ui/react";
 import React from "react";
 import { Link } from "react-router-dom";
-
+import ToggleColorMode from "./ToggleColorMode";
 function Menu() {
   
   return (
@@ -12,6 +12,7 @@ function Menu() {
         marginTop="40px"
         w="90%"   
       >
+        <ToggleColorMode />
         <Flex direction="row"  ml="10" mt="5" justifyContent="center"> 
           <Button mx="20" mb="5" variant="ghost" fontSize="2xl">
             <Link to="/">Home</Link>

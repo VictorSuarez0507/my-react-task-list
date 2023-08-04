@@ -5,11 +5,13 @@ import Menu from './components/Menu';
 import Home from "./pages/Home";
 import AboutUs  from "./pages/AboutUs";
 import Tasks from "./pages/Tasks";
+import ToggleColorMode from './components/ToggleColorMode';
 
 function App() {
   return (   
     <BrowserRouter>
-      <Menu />
+      
+      <Menu />     
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/tasks" element={<Tasks />} />
